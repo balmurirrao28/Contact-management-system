@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connectly | Contact Manager</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="/" class="brand">
+      <span class="brand-logo">C</span>
+      <span>Connectly</span>
+    </a>
+
+    <p class="nav-label">WORKSPACE</p>
+    <a href="#dashboard" class="nav-item active">▦ &nbsp; Dashboard</a>
+    <a href="#contacts" class="nav-item">♙ &nbsp; All Contacts</a>
+    <a href="#add-contact" class="nav-item">＋ &nbsp; Add Contact</a>
+
+    <div class="sidebar-bottom">
+      <div class="database-status">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Database</strong>
+          <small>Contact directory</small>
+        </div>
+      </div>
+      <p>Powered by MongoDB</p>
+    </div>
+  </aside>
+
+  <main class="main-content" id="dashboard">
+    <header class="topbar">
+      <div>
+        <p class="breadcrumb">Workspace / Contacts</p>
+        <h2>Contact Dashboard</h2>
+      </div>
+      <a href="#add-contact" class="top-button">＋ New Contact</a>
+    </header>
+
+    <section class="welcome">
+      <div>
+        <span class="welcome-tag">YOUR PERSONAL DIRECTORY</span>
+        <h1>Every connection,<br>in one place.</h1>
+        <p>Organize your people. Keep your connections close.</p>
+        <a href="#add-contact" class="welcome-button">＋ Add a contact</a>
+      </div>
+      <div class="welcome-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="person person-one">A</div>
+        <div class="person person-two">R</div>
+        <div class="person person-three">S</div>
+        <div class="connection-line"></div>
+      </div>
+    </section>
+
+    <section class="stats-grid" aria-label="Contact statistics">
+      <article class="stat-card">
+        <div class="stat-icon purple">♙</div>
+        <div>
+          <p>Total contacts</p>
+          <h2 id="totalCount">0</h2>
+          <small>Your saved connections</small>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon green">✉</div>
+        <div>
+          <p>Email addresses</p>
+          <h2 id="emailCount">0</h2>
+          <small>Available email contacts</small>
+        </div>
+      </article>
+
+      <article class="stat-card">
+        <div class="stat-icon orange">☎</div>
+        <div>
+          <p>Phone numbers</p>
+          <h2 id="phoneCount">0</h2>
+          <small>Available phone contacts</small>
+        </div>
+      </article>
+    </section>
+
+    <section class="content-grid">
+      <article class="panel form-panel" id="add-contact">
+        <div class="section-heading">
+          <div>
+            <span class="section-kicker">CONTACT DETAILS</span>
+            <h2 id="formTitle">Create a contact</h2>
+          </div>
+          <span class="heading-symbol">＋</span>
+        </div>
+
+        <form id="contactForm">
+          <label for="name">Full name <span>*</span></label>
+          <input id="name" name="name" type="text"
+            placeholder="e.g. Rahul Sharma" maxlength="100" required>
+
+          <label for="email">Email address <span>*</span></label>
+          <input id="email" name="email" type="email"
+            placeholder="name@example.com" maxlength="254" required>
+
+          <label for="phone">Phone number <span>*</span></label>
+          <input id="phone" name="phone" type="tel"
+            placeholder="+91 98765 43210" maxlength="25"
+            pattern="[0-9+().\-\s]{7,25}" required>
+
+          <label for="address">Address <small>(optional)</small></label>
+          <textarea id="address" name="address" rows="3"
+            maxlength="300" placeholder="City, area or address"></textarea>
+
+          <button type="submit" id="saveButton" class="primary-button">
+            ＋ Save Contact
+          </button>
+          <button type="button" id="cancelButton"
+            class="secondary-button" hidden>
+            Cancel Editing
+          </button>
+        </form>
+        <p class="form-note">* Required fields</p>
+      </article>
+
+      <article class="panel directory-panel" id="contacts">
+        <div class="section-heading directory-heading">
+          <div>
+            <span class="section-kicker">YOUR DIRECTORY</span>
+            <h2>Saved contacts</h2>
+            <p class="muted">Manage and find your connections.</p>
+          </div>
+          <span class="count-badge" id="listCount">0 contacts</span>
+        </div>
+
+        <div class="search-box">
+          <span aria-hidden="true">⌕</span>
+          <input id="search" type="search"
+            placeholder="Search name, email or phone..."
+            aria-label="Search contacts">
+        </div>
+
+        <p id="message" role="status" aria-live="polite"></p>
+
+        <div id="contactList" class="contact-list">
+          <div class="empty-state">Loading your contacts...</div>
+        </div>
+      </article>
+    </section>
+
+    <footer>
+      <span>Connectly Contact Manager</span>
+      <span>Built with Node.js · Express · MongoDB</span>
+    </footer>
+  </main>
+</body>
+</html>
